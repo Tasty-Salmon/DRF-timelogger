@@ -1,11 +1,7 @@
-<head>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <h1>List of logs for {{ items.0.start | date:"D, M j Y"}}</h1>
-</head>
+{% extends 'core.html' %}
 
-<body>
-
-    <div class="px-6 py-6>
+{% block content %}
+<div class="px-6 py-6>
         <p>
         <h1>testing</h1>
         </p>
@@ -16,17 +12,19 @@
         {% for item in items %}
         <li>{{ item.activity }}
             Timing: {{ item.start | date:" D, M j Y" }} {{ item.start | time:"H:i" }} - {{ item.end | time:"H:i"
-        }}</li>
-        {% endfor %}
-        <button onclick="location.href='{% url 'log-create' %}'" class="btn btn-success">
-            New Log Entry
-        </button>
-        </ul>
+    }}</li>
+    {% endfor %}
+    <button onclick="location.href='{% url 'log-create' %}'" class="btn btn-success">
+        New Log Entry
+    </button>
+    </ul>
+    </p>
+    <div>
+        <p>
+            <button onclick="location.href='{% url 'log-list' %}'" class="btn btn-success">
+                Back to List
+            </button>
         </p>
-        <div>
-            <p>
-                <button onclick="location.href='{% url 'log-list' %}'" class="btn btn-success">
-                    Back to List
-                </button>
-            </p>
-        </div>
+    </div>
+
+    {% endblock %}

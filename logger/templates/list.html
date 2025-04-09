@@ -1,37 +1,32 @@
-<!-- loaded from log_list.html -->
+{% extends 'core.html' %}
+
+{% block content %}
 
 
-<head>
-    asdasd
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>List of logs</title>
-</head>
-
-<body>
-
-    <div class="px-20 py-6">
-        <p>
-        <h1>testing</h1>
-        </p>
-    </div>
+<div class="px-20 py-6">
     <p>
-    <ul>
-        {% for item in items %}
-        <li>{{ item.activity}}
-            Timing: {{ item.start|date:"D, M j Y" }} {{ item.start|time:"H:i" }} - {{item.end|time:"H:i" }}</li>
-        {% endfor %}
-        <button onclick="location.href='{% url 'log-create' %}'" class="btn btn-success">
-            New Log Entry
-        </button>
-    </ul>
+    <h1>testing</h1>
     </p>
-    <div>
-        <form method="get" action="{% url 'LogDayView' %}">
-            <label for="date">Go to date:</label>
-            <input type="date" name="date" id="date" value="{{ request.GET.date }}">
-            <button type="submit">Filter</button>
-        </form>
+</div>
+<p>
+<ul>
+    {% for item in items %}
+    <li>{{ item.activity}}
+        Timing: {{ item.start|date:"D, M j Y" }} {{ item.start|time:"H:i" }} - {{item.end|time:"H:i" }}</li>
+    {% endfor %}
+    <button onclick="location.href='{% url 'log-create' %}'" class="btn btn-success">
+        New Log Entry
+    </button>
+</ul>
+</p>
+<div>
+    <form method="get" action="{% url 'LogDayView' %}">
+        <label for="date">Go to date:</label>
+        <input type="date" name="date" id="date" value="{{ request.GET.date }}">
+        <button type="submit">Filter</button>
+    </form>
 
 
-    </div>
-</body>
+</div>
+
+{% endblock %}
