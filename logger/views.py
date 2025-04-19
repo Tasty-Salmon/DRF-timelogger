@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from .models import EveningLog
 from .serializers import LogSerializer, UserSerializer
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth import get_user_model
 from rest_framework.renderers import TemplateHTMLRenderer, JSONRenderer
 from rest_framework.response import Response
@@ -12,11 +12,12 @@ from .forms import EveningLogForm
 from datetime import datetime, date
 
 
+
 # Create your views here.
 
 class LogList(generics.ListCreateAPIView):
     renderer_classes = [TemplateHTMLRenderer, JSONRenderer]
-    queryset = EveningLog.objects.all()
+    queryset = EveningLog.objects.all().order_by('-start')
     serializer_class = LogSerializer
 
     def get(self,request):
@@ -44,6 +45,15 @@ class LogCreateView(CreateView):
     form_class = EveningLogForm
     template_name = 'log_create.html'
     success_url = reverse_lazy('log-list')
+
+
+
+class LogEditView(UpdateView):
+    model = EveningLog
+    form_class = EveningLogForm
+    template_name = 'log_create.html'
+    success_url = reverse_lazy('log-list')
+
 
 class UserList(generics.ListCreateAPIView):  
     queryset = get_user_model().objects.all()

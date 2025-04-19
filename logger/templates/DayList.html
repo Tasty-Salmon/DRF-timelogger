@@ -1,30 +1,33 @@
 {% extends 'core.html' %}
 
 {% block content %}
-<div class="px-6 py-6>
-        <p>
-        <h1>testing</h1>
-        </p>
-    </div>
+<div class="px-6 py-6">
     <p>
-
-    <ul>
-        {% for item in items %}
-        <li>{{ item.activity }}
-            Timing: {{ item.start | date:" D, M j Y" }} {{ item.start | time:"H:i" }} - {{ item.end | time:"H:i"
-    }}</li>
-    {% endfor %}
-    <button onclick="location.href='{% url 'log-create' %}'" class="btn btn-success">
-        New Log Entry
-    </button>
-    </ul>
+    <h1>testing</h1>
     </p>
-    <div>
-        <p>
-            <button onclick="location.href='{% url 'log-list' %}'" class="btn btn-success">
-                Back to List
-            </button>
-        </p>
-    </div>
+</div>
+<p>
 
-    {% endblock %}
+<ul>
+    {% for item in items %}
+    <li>{{ item.activity }}
+        Timing: {{ item.start | date:" D, M j Y" }} {{ item.start | time:"H:i" }} - {{ item.end | time:"H:i"
+        }}</li>
+    {% endfor %}
+
+</ul>
+</p>
+<div>
+    <p>
+        <button onclick="location.href='{% url 'log-create' %}'" class="btn btn-success">
+            New Log Entry
+        </button>
+    </p>
+    <p>
+        <button onclick="location.href='{% url 'log-list' %}'" class="btn btn-success">
+            Back to List
+        </button>
+    </p>
+</div>
+
+{% endblock %}

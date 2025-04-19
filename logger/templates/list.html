@@ -9,10 +9,13 @@
     </p>
 </div>
 <p>
+
 <ul>
     {% for item in items %}
     <li>{{ item.activity}}
-        Timing: {{ item.start|date:"D, M j Y" }} {{ item.start|time:"H:i" }} - {{item.end|time:"H:i" }}</li>
+        Timing: {{ item.start|date:"D, M j Y" }} {{ item.start|time:"H:i" }} - {{item.end|time:"H:i" }}
+        <button onclick="location.href = '{%url 'log-edit' item.id%}'" class="btn btn-success">Edit</button>
+    </li>
     {% endfor %}
     <button onclick="location.href='{% url 'log-create' %}'" class="btn btn-success">
         New Log Entry

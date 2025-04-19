@@ -15,6 +15,7 @@ class LogSerializer(serializers.ModelSerializer):
         )
         model = EveningLog
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
