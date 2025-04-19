@@ -8,19 +8,27 @@
     <h1>testing</h1>
     </p>
 </div>
+
 <p>
 
+
+    {% for date, logs in grouped_logs.items %}
+<h2>{{date|date:"D, M j Y"}}</h2>
+
 <ul>
-    {% for item in items %}
-    <li>{{ item.activity}}
+    {% for item in logs %}
+    <li>
+        {{ item.activity}}
         Timing: {{ item.start|date:"D, M j Y" }} {{ item.start|time:"H:i" }} - {{item.end|time:"H:i" }}
         <button onclick="location.href = '{%url 'log-edit' item.id%}'" class="btn btn-success">Edit</button>
     </li>
     {% endfor %}
-    <button onclick="location.href='{% url 'log-create' %}'" class="btn btn-success">
-        New Log Entry
-    </button>
 </ul>
+{% endfor %}
+<button onclick="location.href='{% url 'log-create' %}'" class="btn btn-success">
+    New Log Entry
+</button>
+
 </p>
 <div>
     <form method="get" action="{% url 'LogDayView' %}">

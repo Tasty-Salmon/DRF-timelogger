@@ -11,3 +11,4 @@ class EveningLog(models.Model):
     activity = models.CharField(max_length=255)
     notes = models.TextField(blank=True)
 
+    

@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 from .models import EveningLog
 from .forms import EveningLogForm
 from datetime import datetime, date
+from collections import defaultdict
 
 
 
@@ -19,10 +20,21 @@ class LogList(generics.ListCreateAPIView):
     renderer_classes = [TemplateHTMLRenderer, JSONRenderer]
     queryset = EveningLog.objects.all().order_by('-start')
     serializer_class = LogSerializer
-
+    
+    
     def get(self,request):
+        logs = self.get_queryset()
+        grouped_logs = defaultdict(list)
+
+        for log in logs:
+            print("log:", log, "start:", log.start)
+            date = log.start.date()
+            grouped_logs[date].append(log)
+
+        grouped_logs = dict(sorted(grouped_logs.items(), reverse=True))
+
         serializer = self.get_serializer(self.get_queryset(), many = True)
-        return Response({'items': self.get_queryset(), 'serialized': serializer.data}, template_name='list.html')
+        return Response({'grouped_logs': grouped_logs, 'serialized': serializer.data}, template_name='list.html')
 
 class LogDayView(generics.ListAPIView):
     renderer_classes = [TemplateHTMLRenderer]
