@@ -13,14 +13,26 @@
 
 
     {% for date, logs in grouped_logs.items %}
-<h2>{{date|date:"D, M j Y"}}</h2>
+<h2 class="text-xl font-semibold">{{date|date:"D, M j Y"}}</h2>
 
-<ul>
+<ul class="space-y-1 py-2 border-1-4 bg-gray-100 rounded-md">
     {% for item in logs %}
-    <li>
-        {{ item.activity}}
-        Timing: {{ item.start|date:"D, M j Y" }} {{ item.start|time:"H:i" }} - {{item.end|time:"H:i" }}
-        <button onclick="location.href = '{%url 'log-edit' item.id%}'" class="btn btn-success">Edit</button>
+    <li
+        class="bg-white px-6 py-4 rounded-lg drop-shadow-sm hover:shadow-md transition flex justify-between items-center">
+        <div class="font-semibold text-gray-800">
+            {{ item.activity}}
+        </div>
+        <div class="text-md font-sans text-gray-950">
+            Timing: {{ item.start|time:"H:i" }} - {{item.end|time:"H:i" }}
+        </div>
+        <button onclick="location.href = '{%url 'log-edit' item.id%}'"
+            class="btn btn-success hover: bg-gray-50 transition hover: shadow">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+            </svg>
+        </button>
     </li>
     {% endfor %}
 </ul>

@@ -12,9 +12,8 @@ from .forms import EveningLogForm
 from datetime import datetime, date
 from collections import defaultdict
 
+#.venv\Scripts\Activate.ps1 to activate venv
 
-
-# Create your views here.
 
 class LogList(generics.ListCreateAPIView):
     renderer_classes = [TemplateHTMLRenderer, JSONRenderer]
@@ -27,7 +26,6 @@ class LogList(generics.ListCreateAPIView):
         grouped_logs = defaultdict(list)
 
         for log in logs:
-            print("log:", log, "start:", log.start)
             date = log.start.date()
             grouped_logs[date].append(log)
 
@@ -35,6 +33,8 @@ class LogList(generics.ListCreateAPIView):
 
         serializer = self.get_serializer(self.get_queryset(), many = True)
         return Response({'grouped_logs': grouped_logs, 'serialized': serializer.data}, template_name='list.html')
+
+
 
 class LogDayView(generics.ListAPIView):
     renderer_classes = [TemplateHTMLRenderer]
@@ -50,6 +50,7 @@ class LogDayView(generics.ListAPIView):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many = True)
         return Response({'items': queryset}, template_name = 'DayList.html')
+
 
 
 class LogCreateView(CreateView):
