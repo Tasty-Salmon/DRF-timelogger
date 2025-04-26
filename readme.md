@@ -50,10 +50,3 @@ Designed to practice API-first development while keeping the app user-friendly w
 | `GET/PUT/DELETE` | `/users/<id>/` | Retrieve, update, or delete a user (API) |
 
 ---
-
-## 🧪 How to Run Locally
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/time-logger.git
-   cd time-logger
