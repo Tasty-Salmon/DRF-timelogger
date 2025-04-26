@@ -1,6 +1,6 @@
 # Time Logger App
 
-A simple web-based time logger application built with **Django Rest Framework (DRF)** and **Django Templates**.  
+A simple web-based retrospective time logger application built with **Django Rest Framework (DRF)** and **Django Templates**.  
 Designed to practice API-first development while keeping the app user-friendly with basic HTML rendering.
 
 ---
