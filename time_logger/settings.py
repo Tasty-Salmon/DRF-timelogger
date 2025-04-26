@@ -11,6 +11,17 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+# Load Environment Variables
+load_dotenv()
+SECRET_KEY = os.getenv('django_key')
+db_name = os.getenv('timelogsupabase_name')
+db_user = os.getenv('supabase_user')
+db_password = os.getenv('ysctCco7AYfIcaWk')
+db_host = os.getenv('aws-0-us-east-2.pooler.supabase.com')
+db_port = os.getenv('6543')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,9 +29,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qj&)srn!u+$!_df+mu-&4y5d(%f(dor2dc&#f23f!=r8=41*$p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
