@@ -1,3 +1,6 @@
+<html>
+
+
 {% extends 'core.html' %}
 
 {% block content %}
@@ -22,7 +25,7 @@
         <div class="font-semibold text-gray-800">
             {{ item.activity}}
         </div>
-        <div class="text-md font-sans text-gray-950">
+        <div class="flex flex-col items-center text-md font-sans text-gray-950">
             Timing: {{ item.start|time:"H:i" }} - {{item.end|time:"H:i" }}
         </div>
         <button onclick="location.href = '{%url 'log-edit' item.id%}'"
